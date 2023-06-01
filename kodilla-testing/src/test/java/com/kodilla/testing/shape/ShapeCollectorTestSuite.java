@@ -68,6 +68,7 @@ public class ShapeCollectorTestSuite {
 
 
             //Given
+            List<Shape> lista = new ArrayList<>();
             ShapeCollector shapeCollector = new ShapeCollector();
             Triangle triangle = new Triangle("Trojkat",14);
             shapeCollector.addFigure(triangle);
@@ -75,12 +76,12 @@ public class ShapeCollectorTestSuite {
 
             //When
 
-
+            lista.add(triangle);
 
 
             //Then
 
-
+           Assertions.assertEquals(shapeCollector.showFigures(), lista);
 
         }
         @Test
@@ -88,14 +89,17 @@ public class ShapeCollectorTestSuite {
 
 
             //Given
-
+            ShapeCollector shapeCollector = new ShapeCollector();
+            Triangle triangle = new Triangle("Trojkat",14);
+            shapeCollector.addFigure(triangle);
 
 
             //When
 
+           Shape result = shapeCollector.getFigure(0);
 
             //Then
-
+            Assertions.assertEquals(result,triangle);
 
         }
     }

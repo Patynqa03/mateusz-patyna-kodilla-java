@@ -37,9 +37,9 @@ public class ShapeCollector {
     }
 
 
-    public void showFigures(){
+    public List showFigures(){
 
-        System.out.println(shapes);
+        return shapes;
 
     }
 
