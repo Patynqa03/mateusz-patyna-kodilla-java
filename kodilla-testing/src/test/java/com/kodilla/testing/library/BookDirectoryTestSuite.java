@@ -116,19 +116,21 @@ class BookDirectoryTestSuite {
     @Test
     void testUserWithNoRentedBooks() {
         // Given
+
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
         List<Book> bookList = new ArrayList<>();
         LibraryUser libraryUser1 = new LibraryUser("Name","Name2","1324564789");
         when(libraryDatabaseMock.listBooksInHandsOf(libraryUser1)).thenReturn(bookList);
+
         // When
 
-        List<Book> result = libraryDatabaseMock.listBooksInHandsOf(libraryUser1);
-
+        List<Book> bookList1 = bookLibrary.listBooksInHandsOf(libraryUser1);
 
 
 
         // Then
-    Assertions.assertEquals(0,result.size());
+    Assertions.assertEquals(0,bookList1.size());
 
 
     }
@@ -137,6 +139,7 @@ class BookDirectoryTestSuite {
     void testUserWithOneRentedBook() {
         // Given
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
         List<Book> bookList = new ArrayList<>(generateListOfNBooks(1));
         LibraryUser libraryUser1 = new LibraryUser("Name","Name2","1324564789");
         when(libraryDatabaseMock.listBooksInHandsOf(libraryUser1)).thenReturn(bookList);
@@ -152,9 +155,11 @@ class BookDirectoryTestSuite {
     void testUserWithFiveRentedBooks() {
         // Given
         LibraryDatabase libraryDatabaseMock = mock(LibraryDatabase.class);
+        BookLibrary bookLibrary = new BookLibrary(libraryDatabaseMock);
         List<Book> bookList = new ArrayList<>(generateListOfNBooks(5));
         LibraryUser libraryUser1 = new LibraryUser("Name","Name2","1324564789");
         when(libraryDatabaseMock.listBooksInHandsOf(libraryUser1)).thenReturn(bookList);
+
         // When
 
         List<Book> result = libraryDatabaseMock.listBooksInHandsOf(libraryUser1);
