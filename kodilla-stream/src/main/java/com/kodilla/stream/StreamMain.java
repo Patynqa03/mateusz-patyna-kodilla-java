@@ -1,33 +1,34 @@
 package com.kodilla.stream;
 
-import com.kodilla.stream.beautifier.PoemBeautifier;
-import com.kodilla.stream.iterate.NumbersGenerator;
-import com.kodilla.stream.lambda.*;
+import com.kodilla.stream.book.Book;
+import com.kodilla.stream.book.BookDirectory;
+import com.kodilla.stream.forumuser.Forum;
+import com.kodilla.stream.forumuser.ForumUser;
+
+import java.awt.*;
+import java.security.spec.RSAOtherPrimeInfo;
+import java.util.Map;
+import java.util.stream.Collectors;
 
 public class StreamMain {
 
     public static void main(String[] args) {
-        System.out.println("Welcome to module 7 - Stream");
+//        BookDirectory theBookDirectory = new BookDirectory();
+//        String theResultStringOfBooks = theBookDirectory.getList().stream()  // [1]
+//                .filter(book -> book.getYearOfPublication() > 2005)
+//                .map(Book::toString)
+//                .collect(Collectors.joining(",\n","<<",">>"));                    // [2]
+//
+//        System.out.println(theResultStringOfBooks);
 
-        Processor processor = new Processor();
-        ExecuteSaySomething executeSaySomething = new ExecuteSaySomething();
-        Executor codeToExecute = () -> System.out.println("This is an example text.");
-        processor.execute(codeToExecute);
+        Forum forum = new Forum();
 
-        ExpressionExecutor expressionExecutor = new ExpressionExecutor();
+        Map<Integer,ForumUser> forumMap = forum.getForumUserList().stream().filter(forumUser -> forumUser.getSex() == 'M')
+                .filter(forumUser -> forumUser.getDateOfBirth().getYear() > 2003)
+                .filter(forumUser -> forumUser.getPostCount() > 1)
+                .collect(Collectors.toMap(ForumUser::getUniqueUserId, ForumUser -> ForumUser));
 
-        expressionExecutor.executeExpression(10,5,(a, b) -> a / b);
-
-        PoemBeautifier poemBeautifier = new PoemBeautifier();
-
-        poemBeautifier.beautify("Niebieska trawa",text -> text.toUpperCase());
-        poemBeautifier.beautify("Zielona trawa",text -> "ABC " + text + " ABC");
-        poemBeautifier.beautify("Fioletowa trawa",text -> text + " Napisane przez ogrodnika");
-        poemBeautifier.beautify("AnYzOwA tRAwA",text -> text.toLowerCase());
-
-        System.out.println("Using Stream to generate even numbers from 1 to 20");
-        NumbersGenerator.generateEven(25);
-
+        forumMap.entrySet().stream().map(entry -> entry.getKey() + ": " + entry.getValue())
+                .forEach(System.out::println);
     }
-
 }
