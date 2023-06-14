@@ -12,7 +12,7 @@ public class World {
 
         BigDecimal bigDecimal = continents.stream().flatMap(continent -> continent.getCountryList().stream())
                 .map(Country::getPeopleQuantity)
-            .reduce(BigDecimal.ZERO, BigDecimal::add);
+            .reduce(BigDecimal.ZERO, ((bigDecimal1, bigDecimal2) -> bigDecimal1 = bigDecimal1.add(bigDecimal2)));
         return  bigDecimal;
 
 
