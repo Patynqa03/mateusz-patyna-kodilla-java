@@ -18,7 +18,7 @@ public void addCountry(Country country) {
 
     public Continent(String continentName, List<Country> countryList) {
         this.continentName = continentName;
-        this.countryList = new ArrayList<>();
+        this.countryList = countryList;
     }
 
     public String getContinentName() {

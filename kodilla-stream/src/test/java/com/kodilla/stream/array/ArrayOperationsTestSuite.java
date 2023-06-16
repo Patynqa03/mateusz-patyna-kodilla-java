@@ -13,7 +13,7 @@ public class ArrayOperationsTestSuite {
 
 
 
-        int[] numbers = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+        int[] numbers = {10, 2, 3, 4, 5, 6, 7, 8, 9, 1};
 
 
 
@@ -23,7 +23,7 @@ public class ArrayOperationsTestSuite {
 
         //Then
 
-        Assertions.assertEquals(5, result,0.1);
+        Assertions.assertEquals(5.5, result,0.1);
 
 
     }
