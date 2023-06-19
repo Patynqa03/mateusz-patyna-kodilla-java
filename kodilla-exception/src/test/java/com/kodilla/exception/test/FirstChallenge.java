@@ -1,5 +1,9 @@
 package com.kodilla.exception.test;
 
+import dodatkowe.MirrorString;
+import dodatkowe.Potegu;
+import org.junit.jupiter.api.Assertions;
+
 public class FirstChallenge {
 
     public double divide(double a, double b) throws ArithmeticException {
@@ -24,5 +28,6 @@ public class FirstChallenge {
         } finally {
           System.out.println(" :) ");
         }
+
     }
 }
