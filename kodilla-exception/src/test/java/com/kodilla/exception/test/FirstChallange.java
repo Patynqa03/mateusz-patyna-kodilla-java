@@ -1,10 +1,6 @@
 package com.kodilla.exception.test;
 
-import dodatkowe.MirrorString;
-import dodatkowe.Potegu;
-import org.junit.jupiter.api.Assertions;
-
-public class FirstChallenge {
+public class FirstChallange {
 
     public double divide(double a, double b) throws ArithmeticException {
         if (b == 0) {
@@ -20,8 +16,8 @@ public class FirstChallenge {
      */
     public static void main(String[] args) {
         try {
-            FirstChallenge firstChallenge = new FirstChallenge();
-            double result = firstChallenge.divide(3, 0);
+            FirstChallange firstChallange = new FirstChallange();
+            double result = firstChallange.divide(3, 0);
             System.out.println(result);
         }catch (ArithmeticException e) {
             System.out.println("You cant divide by 0 " + e);
