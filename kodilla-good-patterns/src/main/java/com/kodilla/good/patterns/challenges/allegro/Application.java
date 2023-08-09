@@ -8,12 +8,8 @@ public class Application {
         BuyRequestRetriever requestRetriever = new BuyRequestRetriever();
         BuyRequest buyRequest = requestRetriever.retrieve();
 
-        InformationService informationService = new InformationService() {
-            @Override
-            public void inform(User user, LocalDateTime from, LocalDateTime to) {
+        InformationService informationService = new InformationServiceImpl();
 
-            }
-        };
         OrderRepository orderRepository = new OrderRepository() {
             @Override
             public void createOrder(User user, Product product) {
