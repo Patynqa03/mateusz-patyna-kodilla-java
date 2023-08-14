@@ -18,4 +18,20 @@ public class FlightService {
     public List<Flight> flightsFrom(String flightsFrom) {
         return flightList.stream().filter(flight -> flight.getFromWhere().equals(flightsFrom)).collect(Collectors.toList());
     }
+    public List<Flight> findConnectingFlights(String origin, String via, String destination) {
+
+       List<Flight> firstStep = flightsFrom(origin);
+       List<Flight> secondStep = flightsTo(destination);
+
+        return firstStep.stream()
+                .filter(flight -> flight.getDestination().equals(via))
+                .filter(flight -> secondStep.stream()
+                        .anyMatch(flight2 -> flight2.getFromWhere().equals(via) && flight2.getDestination().equals(destination)))
+                .collect(Collectors.toList());
+
+
+
+
+    }
+
 }

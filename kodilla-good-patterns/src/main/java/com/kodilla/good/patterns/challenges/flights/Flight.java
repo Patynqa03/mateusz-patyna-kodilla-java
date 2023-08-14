@@ -7,7 +7,15 @@ public class Flight {
     private String destination;
     private String fromWhere;
 
-    public Flight(String destination, String fromWhere) {
+    @Override
+    public String toString() {
+        return "Flight{" +
+                "destination='" + destination + '\'' +
+                ", fromWhere='" + fromWhere + '\'' +
+                '}';
+    }
+
+    public Flight(String fromWhere, String destination) {
         this.destination = destination;
         this.fromWhere = fromWhere;
     }
