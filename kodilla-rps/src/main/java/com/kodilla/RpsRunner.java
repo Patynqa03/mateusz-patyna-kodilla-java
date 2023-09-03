@@ -1,23 +1,19 @@
 package com.kodilla;
 
-import com.kodilla.rps.ComputerMove;
-import com.kodilla.rps.PlayerMove;
+import com.kodilla.rps.ComputerProcessor;
+import com.kodilla.rps.UserMove;
+import com.kodilla.rps.UserProcessor;
 
 public class RpsRunner {
     public static void main(String[] args) {
-        ComputerMove computerMove = new ComputerMove();
-        PlayerMove playerMove = new PlayerMove();
 
-        boolean gameOn = false;
+        boolean end = false;
 
-        while(!gameOn) {
+        while (!end) {
 
-            if(playerMove.move() == 2) {
-                gameOn = true;
-            }else {
-                playerMove.move();
-            }
 
         }
+
+
     }
 }
