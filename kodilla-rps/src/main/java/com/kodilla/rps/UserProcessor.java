@@ -3,7 +3,7 @@ package com.kodilla.rps;
 import java.util.Scanner;
 
 public class UserProcessor {
-    public static UserMove getUserMove() {
+    public UserMove getUserMove() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
             System.out.println("Prosze wybierz swój ruch: P - Papier, N - Nozyce, K - Kamien");
