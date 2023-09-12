@@ -10,7 +10,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 import java.math.BigDecimal;
 import java.util.List;
 
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 @ExtendWith(SpringExtension.class)
 @SpringBootTest
@@ -36,5 +36,4 @@ class TaskFinancialDetailsDaoTestSuite {
         //CleanUp
         taskFinancialDetailsDao.deleteById(id);
     }
-
 }

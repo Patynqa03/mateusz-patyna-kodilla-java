@@ -2,7 +2,6 @@ package com.kodilla.hibernate.task.dao;
 
 import com.kodilla.hibernate.task.Task;
 import com.kodilla.hibernate.task.TaskFinancialDetails;
-import com.kodilla.hibernate.task.TaskList;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,45 +13,50 @@ import java.util.Optional;
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
-class TaskDaoTestSuite {
-@Autowired
-    private TaskDao taskDao;
-    private static final String DESCRIPTION = "Test: Learn Hibernate";
+public class TaskDaoTestSuite {
 
-    @Test
+    @Autowired
+private TaskDao taskDao;
+private final static String DESCRIPTION = "Test: Learn Hibernate";
+
+@Test
     void testTaskDaoSave() {
-        //Given
+
+
+        // Given
         Task task = new Task(DESCRIPTION, 7);
 
         //When
-        taskDao.save(task);
+    taskDao.save(task);
 
-        //Then
-        int id = task.getId();
+    //Then
+    int id = task.getId();
         Optional<Task> readTask = taskDao.findById(id);
         assertTrue(readTask.isPresent());
+        //Clean Up
+    taskDao.deleteById(id);
+}
 
-        //CleanUp
-        taskDao.deleteById(id);
-    }
-    @Test
+@Test
     void testTaskDaoFindByDuration() {
-        //Given
-        Task task = new Task(DESCRIPTION, 7);
-        taskDao.save(task);
-        int duration = task.getDuration();
 
-        //When
-        List<Task> readTasks = taskDao.findByDuration(duration);
+    //Given
+    Task task = new Task(DESCRIPTION, 14);
+    taskDao.save(task);
+    int duration = task.getDuration();
 
-        //Then
-        assertEquals(1, readTasks.size());
+    //When
+    List<Task> readTask = taskDao.findTasksByDuration(duration);
 
-        //CleanUp
-        int id = readTasks.get(0).getId();
-        taskDao.deleteById(id);
+    //Then
+    assertEquals(1,readTask.size());
 
-    }
+    //Clean Up
+
+    int id = readTask.get(0).getId();
+    taskDao.findById(id);
+}
+
     @Test
     void testTaskDaoSaveWithFinancialDetails() {
         //Given
@@ -68,30 +72,5 @@ class TaskDaoTestSuite {
 
         //CleanUp
         //taskDao.deleteById(id);
-    }
-    @Test
-    void testTaskListDaoSaveWithTasks() {
-        //Given
-        Task task = new Task("Test: Learn Hibernate", 14);
-        Task task2 = new Task("Test: Write some entities", 3);
-        TaskFinancialDetails tfd = new TaskFinancialDetails(new BigDecimal(20), false);
-        TaskFinancialDetails tfd2 = new TaskFinancialDetails(new BigDecimal(10), false);
-        task.setTaskFinancialDetails(tfd);
-        task2.setTaskFinancialDetails(tfd2);
-        TaskList taskList = new TaskList(LISTNAME, "ToDo tasks");
-        taskList.getTasks().add(task);
-        taskList.getTasks().add(task2);
-        task.setTaskList(taskList);
-        task2.setTaskList(taskList);
-
-        //When
-        taskListDao.save(taskList);
-        int id = taskList.getId();
-
-        //Then
-        assertNotEquals(0, id);
-
-        //CleanUp
-        //taskListDao.deleteById(id);
     }
 }

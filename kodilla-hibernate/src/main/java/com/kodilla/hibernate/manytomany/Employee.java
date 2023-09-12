@@ -2,7 +2,6 @@ package com.kodilla.hibernate.manytomany;
 
 import jakarta.persistence.*;
 import jakarta.validation.constraints.NotNull;
-import org.springframework.data.annotation.Id;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -15,7 +14,8 @@ public class Employee {
     private String firstname;
     private String lastname;
     private List<Company> companies = new ArrayList<>();
-    @ManyToMany(cascade = CascadeType.ALL)
+
+    @ManyToMany
     @JoinTable(
             name = "JOIN_COMPANY_EMPLOYEE",
             joinColumns = {@JoinColumn(name = "EMPLOYEE_ID", referencedColumnName = "EMPLOYEE_ID")},
@@ -25,7 +25,7 @@ public class Employee {
         return companies;
     }
 
-    private void setCompanies(List<Company> companies) {
+    public void setCompanies(List<Company> companies) {
         this.companies = companies;
     }
 
