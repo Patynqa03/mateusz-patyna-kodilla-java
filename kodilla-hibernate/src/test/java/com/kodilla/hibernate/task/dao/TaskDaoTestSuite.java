@@ -30,7 +30,7 @@ private final static String DESCRIPTION = "Test: Learn Hibernate";
         taskDao.save(task);
         //Then
 
-        Long id = task.getId();
+        int id = task.getId();
         Optional<Task> readTask = taskDao.findById(id);
         assertTrue(readTask.isPresent());
         //Clean Up

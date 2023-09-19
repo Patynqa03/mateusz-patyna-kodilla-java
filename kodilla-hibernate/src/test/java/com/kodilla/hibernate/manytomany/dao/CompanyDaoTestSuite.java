@@ -6,6 +6,8 @@ import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 
+import java.util.List;
+
 import static org.junit.jupiter.api.Assertions.*;
 
 @SpringBootTest
@@ -13,6 +15,8 @@ class CompanyDaoTestSuite {
 
     @Autowired
     private CompanyDao companyDao;
+    @Autowired
+    private EmployeeDao employeeDao;
 
     @Test
     void testSaveManyToMany() {
@@ -50,13 +54,29 @@ class CompanyDaoTestSuite {
         assertNotEquals(0, dataMaestersId);
         assertNotEquals(0, greyMatterId);
 
-        //CleanUp
-        //try {
-        //    companyDao.deleteById(softwareMachineId);
-        //    companyDao.deleteById(dataMaestersId);
-        //    companyDao.deleteById(greyMatterId);
-        //} catch (Exception e) {
-        //    //do nothing
-        //}
+       // CleanUp
+        try {
+            companyDao.deleteById(softwareMachineId);
+            companyDao.deleteById(dataMaestersId);
+            companyDao.deleteById(greyMatterId);
+        } catch (Exception e) {
+            //do nothing
+        }
+    }
+
+    @Test
+    void findByFirstThree() {
+        Company company1 = new Company("ABC INC");
+        Company company2 = new Company("XYZ SP ZOO");
+        companyDao.save(company1);
+        companyDao.save(company2);
+
+        List<Company> foundCompanies = companyDao.findByFirstThree("ABC");
+        assertEquals(1,foundCompanies.size());
+        assertTrue(foundCompanies.contains(company1));
+
+        companyDao.delete(company1);
+        companyDao.delete(company2);
+
     }
 }
