@@ -79,4 +79,23 @@ class CompanyDaoTestSuite {
         companyDao.delete(company2);
 
     }
+    @Test
+    void findByLastName() {
+
+        Employee employee1 = new Employee("Stephanie", "Clarckson");
+        Employee employee2 = new Employee("Aiden", "Smith");
+        Employee employee3 = new Employee("Emily", "Smith");
+
+        employeeDao.save(employee1);
+        employeeDao.save(employee2);
+        employeeDao.save(employee3);
+
+        List<Employee> foundByLastName = employeeDao.getEmployeeWithSpecificName("Smith");
+        assertEquals(2,foundByLastName.size());
+        assertTrue(foundByLastName.contains(employee2));
+
+        companyDao.deleteById(0);
+        companyDao.deleteById(1);
+        companyDao.deleteById(2);
+    }
 }

@@ -14,8 +14,8 @@ import java.util.List;
 public class Employee {
 
     private int id;
-    private String firstname;
-    private String lastname;
+    public String firstname;
+    public String lastname;
     private List<Company> companies = new ArrayList<>();
 
     @ManyToMany
