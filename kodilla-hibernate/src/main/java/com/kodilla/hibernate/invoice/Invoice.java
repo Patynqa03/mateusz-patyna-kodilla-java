@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 
 import java.util.List;
 
+@Entity
+@Table(name = "INVOICE")
 public class Invoice {
     private int id;
     private String number;

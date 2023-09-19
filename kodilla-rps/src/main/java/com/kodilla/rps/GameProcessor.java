@@ -12,7 +12,6 @@ public class GameProcessor {
 
             Scanner scanner = new Scanner(System.in);
             try {
-
                 System.out.println(imieGracza + " Prosze napisz ile rund chcesz zagrac");
                 liczbaRund = scanner.nextInt();
                 temp = false;
@@ -24,4 +23,5 @@ public class GameProcessor {
 
         return liczbaRund;
     }
+
 }

@@ -6,7 +6,7 @@ public class UserProcessor {
     public UserMove getUserMove() {
         Scanner scanner = new Scanner(System.in);
         while (true) {
-            System.out.println("Prosze wybierz swój ruch: P - Papier, N - Nozyce, K - Kamien");
+            System.out.println("Prosze wybierz swój ruch: P - Papier, N - Nozyce, K - Kamien, X - Koniec gry, R - Nowa gra");
             String temp = scanner.nextLine().toUpperCase();
             switch (temp) {
                 case "P" : return UserMove.PAPIER;

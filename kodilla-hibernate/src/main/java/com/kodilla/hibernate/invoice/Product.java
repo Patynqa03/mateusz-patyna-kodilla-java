@@ -13,9 +13,26 @@ public class Product {
     public Product(String name) {
         this.name = name;
     }
-@Column(name = "ID",unique = true)
-@GeneratedValue
-@Id
+
+   private Item item;
+
+    @OneToMany(
+            targetEntity = Item.class,
+            mappedBy = "PRODUCT",
+            cascade = CascadeType.ALL,
+            fetch = FetchType.LAZY
+    )
+    public Item getItem() {
+        return item;
+    }
+
+    public void setItem(Item item) {
+        this.item = item;
+    }
+
+    @Column(name = "ID",unique = true)
+    @GeneratedValue
+    @Id
     public int getId() {
         return id;
     }

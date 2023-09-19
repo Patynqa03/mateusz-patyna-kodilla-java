@@ -4,12 +4,26 @@ import jakarta.persistence.*;
 
 import java.math.BigDecimal;
 
+@Entity
+@Table(name = "ITEM")
 public class Item {
     private int id;
     private BigDecimal price;
     private int quantity;
     private BigDecimal value;
     private Product product;
+    private Invoice invoice;
+
+
+    @ManyToOne
+    @JoinColumn(name = "INVOICE")
+    public Invoice getInvoice() {
+        return invoice;
+    }
+
+    public void setInvoice(Invoice invoice) {
+        this.invoice = invoice;
+    }
 
     public Item() {
     }
